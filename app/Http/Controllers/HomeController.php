@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 use App\Post;
+use App\Tag;
 use App\Category;
 
 use Illuminate\Http\Request;
@@ -39,8 +40,16 @@ class HomeController extends Controller
     public function create() {
 
         $categories = Category::all();
+        $tags = Tag::all();
         
-        return view('pages.create', compact('categories'));
+        return view('pages.create', compact('categories', 'tags'));
+    }
+
+    public function tags() {
+
+        $tags = Tag::all();
+        
+        return view('pages.create', compact('tags'));
     }
 
   
@@ -64,6 +73,11 @@ class HomeController extends Controller
         $post -> category() -> associate($category);
         $post -> save();
 
+
+        $tags = Tag::findOrFail($request -> get('tags'));
+        // dd($tags);
+        $post -> tags() -> attach($tags);
+        $post -> save();
         return redirect() -> route('posts', $post -> id);
     }
 }

@@ -11,7 +11,12 @@
             <li>
 
                 {{ $post -> title }} - {{ $post -> author }} - {{ $post -> description }} - {{ $post -> release_date}} <br>
-                categoria: {{$post -> category -> name}} <br>
+                categoria: {{$post -> category -> name}} 
+                @foreach ($post -> tags as $tag)
+                tag: {{ $tag -> name}}                    
+                @endforeach
+
+                <br>
             
             </li>
         @endforeach
