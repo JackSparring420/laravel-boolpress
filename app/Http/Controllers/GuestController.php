@@ -13,6 +13,6 @@ class GuestController extends Controller
 
     public function login()
     {
-        return view('pages.cars');
+        return view('pages.posts');
     }
 }

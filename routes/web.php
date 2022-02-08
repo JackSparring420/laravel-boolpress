@@ -27,7 +27,7 @@ Route::post('/login', 'Auth\LoginController@login')->name('login');
 Route::post('/register', 'Auth\RegisterController@register')->name('register');
 Route::get('/logout', 'Auth\LoginController@logout')->name('logout');
 
-Route::get('/cars', 'HomeController@cars') ->name('cars');
+Route::get('/posts', 'HomeController@posts') ->name('posts');
 
-Route::get('/car/create', 'HomeController@create') ->name('create');
-Route::post('/car/store', 'HomeController@store') ->name('store');
+Route::get('/post/create', 'HomeController@create') ->name('create');
+Route::post('/post/store', 'HomeController@store') ->name('store');

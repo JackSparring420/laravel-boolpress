@@ -1,7 +1,8 @@
 <?php
 
 namespace App\Http\Controllers;
-use App\Car;
+use App\Post;
+use App\Category;
 
 use Illuminate\Http\Request;
 
@@ -27,18 +28,19 @@ class HomeController extends Controller
         return view('pages.home');
     }
 
-    public function cars() {
+    public function posts() {
 
-        $cars = Car::all();
+        $posts = Post::all();
 
-        // dd($comics);
 
-        return view('pages.cars', compact('cars'));
+        return view('pages.posts', compact('posts'));
     }
 
     public function create() {
 
-        return view('pages.create');
+        $categories = Category::all();
+        
+        return view('pages.create', compact('categories'));
     }
 
   
@@ -46,15 +48,22 @@ class HomeController extends Controller
     public function store(Request $request) {
 
         $data = $request -> validate([
-            'name' => 'required|string|max:255',
-            'manifacture' => 'string|max:255',
-            'displacement' => 'numeric',
+            'title' => 'required|string|max:255',
+            'author' => 'required|string|max:255',
+            'release_date' => 'required|date',
+            'description' => 'required|string|max:255'
+
         ]);
 
-        $car = Car::create($data);
+        // $post = Post::create($data);
 
-        // return redirect() -> route('home');
 
-        return redirect() -> route('cars', $car -> id);
+        $category = Category::findOrFail($request -> get('category_id'));
+        $post = Post::make($data);
+        // dd($post, $category);
+        $post -> category() -> associate($category);
+        $post -> save();
+
+        return redirect() -> route('posts', $post -> id);
     }
 }
