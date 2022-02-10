@@ -105,9 +105,9 @@ class HomeController extends Controller
         $post = Post::findOrFail($id);
         $post -> update($data);
 
-        // $category = Category::findOrFail($request -> get('category'));
-        // $post ->category() -> associate($category);
-        // $post ->save();
+        $category = Category::findOrFail($request -> get('category_id'));
+        $post ->category() -> associate($category);
+        $post ->save();
 
         if ($request -> has('tags')) {
             $tags = Tag::findOrFail($request -> get('tags'));
