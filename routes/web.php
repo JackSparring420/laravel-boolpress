@@ -31,3 +31,9 @@ Route::get('/posts', 'HomeController@posts') ->name('posts');
 
 Route::get('/post/create', 'HomeController@create') ->name('create');
 Route::post('/post/store', 'HomeController@store') ->name('store');
+
+
+Route::get('/post/edit/{id}', 'HomeController@edit') ->name('post.edit');
+Route::post('/post/update/{id}', 'HomeController@update') ->name('post.update');
+
+Route::get('/post/delete/{id}', 'Homecontroller@delete') -> name('post.delete');

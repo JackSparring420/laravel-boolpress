@@ -25,14 +25,19 @@
             <input type="text" name="author" placeholder="author"> <br>
 
             <label for="description">description:</label>
-            <input type="textarea" name="description" placeholder="description"> <br>
+            <input type="textarea" name="description" placeholder="description" rows="10"> <br>
 
             <label for="release_date">release_date:</label>
             <input type="date" name="release_date"> <br>
 
             <select name="category_id">
                 @foreach ($categories as $category)
-                    <option value="{{ $category -> id}}">{{ $category -> name}}</option>
+                    <option value="{{ $category -> id}}"
+                        {{-- @if ($category -> id == $post -> id)
+                            selected
+                        @endif --}}
+                        
+                        >{{ $category -> name}}</option>
                 @endforeach
             </select> <br>
             <span>Tags:</span>

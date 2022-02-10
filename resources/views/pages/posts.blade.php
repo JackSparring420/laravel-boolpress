@@ -15,6 +15,10 @@
                 @foreach ($post -> tags as $tag)
                 tag: {{ $tag -> name}}                    
                 @endforeach
+                | 
+                <a class="btn btn-secondary" href="{{ route('post.edit', $post -> id)}}">EDIT</a> | 
+                <a class="btn btn-danger"  href="{{ route('post.delete', $post -> id)}}">DELETE</a>
+
 
                 <br>
             
